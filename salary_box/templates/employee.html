@@ -1,0 +1,43 @@
+{% extends 'base.html' %} {% block title %} {{request.path}} {% endblock %} {%
+{% block content %}
+<a href="{% url 'myapp:add-employee' employee.0.company %}">
+  <button class="btn btn-primary btn-outline-info text-light mb-3">
+    Add Employee
+  </button>
+</a>
+{% if employee %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Addresss</th>
+      <th scope="col">Experience</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  {% for item in employee %}
+  <tbody>
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{item.first_name}}</td>
+      <td>{{item.last_name}}</td>
+      <td>{{item.address}}</td>
+      <td>{{item.experience}}</td>
+      <td><img src="https://img.icons8.com/ios/20/000000/pencil--v1.png" /></td>
+      <td>
+        <img
+          src="https://img.icons8.com/material-outlined/20/000000/delete-sign.png"
+        />
+      </td>
+    </tr>
+  </tbody>
+  {% endfor %}
+</table>
+{% else %}
+<h3 class="text-dark text-center mt-5">No Employee Available</h3>
+{% endif %} 
+
+{% endblock %}
