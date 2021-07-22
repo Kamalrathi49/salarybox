@@ -7,7 +7,7 @@ STATEMENT_CHOICE = (
 )
 
 class Company(models.Model):
-    name = models.CharField(max_length=99)
+    name = models.CharField(max_length=99, unique=True)
     founder = models.CharField(max_length=50)
     headquator = models.CharField(max_length=99)
     fund_raise = models.CharField(max_length=50)
@@ -18,6 +18,7 @@ class Company(models.Model):
 
 
 class Employee(models.Model):
+    id = models.IntegerField(primary_key=True, unique=True)
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
     address = models.CharField(max_length=99)

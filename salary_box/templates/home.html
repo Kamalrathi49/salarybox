@@ -6,7 +6,7 @@
     Add Company
   </button>
 </a>
-
+{% if company %}
 <table class="table">
   <thead>
     <tr>
@@ -52,4 +52,7 @@
     {% endfor %}
   </tbody>
 </table>
+{% else %}
+<h3 class="text-info text-center">No Companys Available</h2>
+{% endif %}
 {% endblock %}

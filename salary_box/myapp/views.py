@@ -1,6 +1,8 @@
 from django.shortcuts import redirect, render
 from .models import * 
 from .forms import *
+from django.contrib import messages #import messages
+
 # Create your views here.
 
 def company(request):
@@ -19,15 +21,15 @@ def add_company(request):
         form = addCompanyForm(request.POST)
         if form.is_valid():
           form.save()
+          messages.success(request, f"Your Company is added sucessfully!")
           return redirect('myapp:home')
         else :
-            pass
+             messages.error(request, f"Something went wrong!, Please try again later.")
+             return redirect('myapp:home')
     else:
         form = addCompanyForm()
         ctx = {'form': form}
         return render(request, 'add_company.html', ctx)
-
-
 
 
 def add_employee(request , company_name):
@@ -36,9 +38,12 @@ def add_employee(request , company_name):
         if form.is_valid():
           employee = form.save(commit=False)
           employee.company = Company.objects.get(name = company_name)
-          print('--------______----------->>>>>>>>',request.META['HTTP_REFERER'])
           employee.save()
+          messages.success(request, f" Your Employee '{employee.first_name} {employee.last_name}' is added sucessfully!")
           return redirect(f'/{company_name}')
+        else:
+            messages.error(request, f"Something went wrong!, Please try again")
+            return redirect(f'/{company_name}')
     else:
         form = addEmployeeForm()
         ctx = {'form': form}
@@ -50,9 +55,11 @@ def update_company(request, company_name):
         form = addCompanyForm(request.POST or None, instance = inst)
         if form.is_valid():
             form.save()
+            messages.success(request, f"Your Company '{company_name}' is updated sucessfully!")
             return redirect(f'myapp:home')
         else: 
-            pass
+            messages.error(request, f"Something went wrong!, Please try again")
+            return redirect(f'myapp:home')
 
     else:
         inst = Company.objects.get(name = company_name)
@@ -63,4 +70,30 @@ def update_company(request, company_name):
 def delete_company(request, company_name):
     company = Company.objects.get(name=company_name)
     company.delete()
+    messages.success(request, f"Your Company '{company_name}' is removed sucessfully!")
     return redirect(f'myapp:home')
+
+
+def update_employee(request, company_name, employee_id):
+    if request.method == 'POST':
+        employee = Employee.objects.get(id = employee_id)
+        form = addEmployeeForm(request.POST or None, instance = employee)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f"Your Employee '{employee.first_name}' is updated sucessfully!")
+            return redirect(f'/{company_name}')
+        else: 
+            messages.error(request, f'Something went wrong!, Please try again')
+            return redirect(f'/{company_name}')
+
+    else:
+        employee = Employee.objects.get(id = employee_id)
+        form = addEmployeeForm(request.POST or None, instance = employee)
+        ctx = {'form': form}
+        return render(request, 'update_employee.html', ctx)
+
+def delete_employee(request, employee_id):
+    employee = Employee.objects.get(id=employee_id)
+    employee.delete()
+    messages.success(request, f"Your Employee'{employee.first_name} {employee.last_name}' is removed sucessfully!")
+    return redirect(f'/{employee.company.name}')

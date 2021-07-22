@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
-{% block title %} {{request.path}} {% endblock %}
 
+{% load custom_tags %} 
+    {% block title %}
+        {{request.path|remove_slash}} 
+    {% endblock %} 
 {% block content %}
-    <div class="container">
-        <form method="post">
-          {% csrf_token %}
-          {{ form.as_p }}
-              <button type="submit" class="btn btn-primary">Add Company</button>
-        </form>
-    </div>
-
+    <form method="post">
+        {% csrf_token %} 
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Add Company</button>
+    </form>
 {% endblock %}

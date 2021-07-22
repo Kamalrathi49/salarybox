@@ -11,4 +11,4 @@ class addCompanyForm(forms.ModelForm):
 class addEmployeeForm(forms.ModelForm):
     class Meta:
         model = Employee
-        fields = ('first_name', 'last_name', 'address', 'experience')
+        fields = ('id', 'first_name', 'last_name', 'address', 'experience')
