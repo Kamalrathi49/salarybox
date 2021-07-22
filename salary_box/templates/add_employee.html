@@ -1,14 +1,36 @@
-{% extends 'base.html' %}
 {% load custom_tags %}
-{% block title %} Add Employee {% endblock %}
-
-{% block content %}
-    <div class="container">
-        <form  method="post">
-          {% csrf_token %}
-          {{ form.as_p }}
-              <button type="submit" class="btn btn-primary">Add Employee</button>
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">SalaryBox</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form id="friend-form">
+          {% csrf_token %} {{ form.as_p }}
+          <button
+            type="button"
+            class="btn btn-sm btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cancel
+          </button>
+          <button type="submit" class="btn btn-sm btn-primary">Add</button>
         </form>
+      </div>
     </div>
-
-{% endblock %}
+  </div>
+</div>

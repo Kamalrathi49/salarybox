@@ -2,11 +2,10 @@
 {% load custom_tags %}
 {% block title %} {{request.path|remove_slash}} {% endblock %}
 {% block content %}
-<a href="{% url 'myapp:add-employee' request.path|remove_slash %}">
-  <button class="btn btn-primary btn-outline-info text-light mb-3">
-    Add Employee
+{% include  'add_employee.html' %}
+<button class="btn btn-primary text-light btn-outline-info mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Add Employee
   </button>
-</a>
 {% if employee %}
 <table class="table">
   <thead>
