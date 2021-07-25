@@ -1,33 +1,33 @@
 {% extends 'base.html' %} {% block title %} Home {% endblock %} 
 {% block content %}
 
-{% include 'add_company.html' %}
-
-<button class="btn btn-primary text-light btn-outline-info mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+<a href="{% url 'myapp:add-company'  %}">
+  <button class="btn btn-primary text-light btn-outline-info mb-3">
     Add Company
   </button>
-  {% if company %}
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Company</th>
-        <th scope="col">Founder</th>
-        <th scope="col">Head Quator</th>
-        <th scope="col">Fund Raise</th>
-        <th scope="col">Edit</th>
-        <th scope="col">Delete</th>
-      </tr>
-    </thead>
-    {% for item in company %}
-    <tbody>
-      <tr>
-        <th scope="row">{{forloop.counter}}</th>
-        <td>
-          <a
+</a>
+{% if company %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Company</th>
+      <th scope="col">Founder</th>
+      <th scope="col">Head Quator</th>
+      <th scope="col">Fund Raise</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  {% for item in company %}
+  <tbody>
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>
+        <a
           class="text-decoration-none"
           href="{% url 'myapp:employee' item.name %}"
-          >
+        >
           {{item.name|upper}}
         </a>
       </td>
@@ -35,10 +35,11 @@
       <td>{{item.headquator}}</td>
       <td>{{item.fund_raise|upper}}</td>
       <td>
-        {% include 'update_company.html' %}
-        <btn class="btn" data-bs-toggle="modal" data-bs-target="#update-company">
+        <a href="{% url 'myapp:update-company' item.name %}">
+          <button style="border: none; background: none">
             <img src="https://img.icons8.com/ios/20/000000/pencil--v1.png" />
-          </btn>
+          </button>
+        </a>
       </td>
       <td>
         <a href="{% url 'myapp:delete-company' item.name %}">
@@ -54,4 +55,5 @@
 {% else %}
 <h3 class="text-info text-center">No Companys Available</h2>
 {% endif %}
+
 {% endblock %}

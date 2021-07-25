@@ -2,35 +2,34 @@ from django.shortcuts import redirect, render
 from .models import * 
 from .forms import *
 from django.contrib import messages #import messages
-from django.http import JsonResponse
-from django.core import serializers
+
 # Create your views here.
 
 def company(request):
     company = Company.objects.all()
-    form = addCompanyForm()
-    ctx = {'company': company, 'form':form}
+    ctx = {'company': company}
     return render(request, 'home.html', ctx)
 
 
 def employee(request, company_name):
     employee = Employee.objects.filter(company__name=company_name)
-    form = addEmployeeForm()
-    ctx = {'employee': employee, 'form':form}
-
+    ctx = {'employee': employee}
     return render(request, 'employee.html', ctx)
+
 def add_company(request):
-    if request.method == "POST" and request.is_ajax:
+    if request.method == "POST":
         form = addCompanyForm(request.POST)
         if form.is_valid():
           form.save()
           messages.success(request, f"Your Company is added sucessfully!")
-          return JsonResponse({'status':'success'})
+          return redirect('myapp:home')
         else :
-             messages.error(request, f"Something went wrong!, Please try again")
-             return JsonResponse({'status':'failed'})
+             messages.error(request, f"Something went wrong!, Please try again later.")
+             return redirect('myapp:home')
     else:
-         return JsonResponse({'status':'failed'})
+        form = addCompanyForm()
+        ctx = {'form': form}
+        return render(request, 'add_company.html', ctx)
 
 
 def add_employee(request , company_name):
@@ -56,7 +55,7 @@ def update_company(request, company_name):
         form = addCompanyForm(request.POST or None, instance = inst)
         if form.is_valid():
             form.save()
-            messages.success(request, f"Your Company ' {company_name}' is updated sucessfully!")
+            messages.success(request, f"Your Company '{company_name}' is updated sucessfully!")
             return redirect(f'myapp:home')
         else: 
             messages.error(request, f"Something went wrong!, Please try again")
@@ -71,30 +70,30 @@ def update_company(request, company_name):
 def delete_company(request, company_name):
     company = Company.objects.get(name=company_name)
     company.delete()
-    messages.success(request, f"Your Company ' {company_name}' is removed sucessfully!")
+    messages.success(request, f"Your Company '{company_name}' is removed sucessfully!")
     return redirect(f'myapp:home')
 
 
-def update_employee(request, company_name, employee_id):
+def update_employee(request, company_name, id):
     if request.method == 'POST':
-        employee = Employee.objects.get(id = employee_id)
+        employee = Employee.objects.get(id = id)
         form = addEmployeeForm(request.POST or None, instance = employee)
         if form.is_valid():
             form.save()
-            messages.success(request, f"Your Employee  '{employee.first_name}' is updated sucessfully!")
+            messages.success(request, f"Your Employee '{employee.first_name}' is updated sucessfully!")
             return redirect(f'/{company_name}')
         else: 
             messages.error(request, f'Something went wrong!, Please try again')
             return redirect(f'/{company_name}')
 
     else:
-        employee = Employee.objects.get(id = employee_id)
+        employee = Employee.objects.get(id = id)
         form = addEmployeeForm(request.POST or None, instance = employee)
         ctx = {'form': form}
         return render(request, 'update_employee.html', ctx)
 
-def delete_employee(request, employee_id):
-    employee = Employee.objects.get(id=employee_id)
+def delete_employee(request, id):
+    employee = Employee.objects.get(id=id)
     employee.delete()
-    messages.success(request, f"Your Employee  '{employee.first_name} {employee.last_name}'  is removed sucessfully!")
+    messages.success(request, f"Your Employee'{employee.first_name} {employee.last_name}' is removed sucessfully!")
     return redirect(f'/{employee.company.name}')
