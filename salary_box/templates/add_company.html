@@ -5,9 +5,19 @@
         {{request.path|remove_slash}} 
     {% endblock %} 
 {% block content %}
-    <form method="post">
-        {% csrf_token %} 
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Add Company</button>
-    </form>
+<div class="d-flex justify-content-center flex-direction-row">
+    <div class="border border-info p-4">
+        <h4 class="text-center text-info" >Add Company</h4>
+        <form method="post">
+            {% csrf_token %} 
+            {{ form.as_p }}
+            <div class="d-flex justify-content-end justify-content-between">
+                <a class="text-decoration-none " href="{% url 'myapp:home' %}">
+                    <button type="button" class="btn btn-danger ">Close</button>
+                </a>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}

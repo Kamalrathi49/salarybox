@@ -4,7 +4,7 @@
 
 <a href="{% url 'myapp:add-company'  %}">
   <button class="btn btn-primary text-light btn-outline-info mb-3">
-    Add New Company
+    Add Company
   </button>
 </a>
 {% if company %} {% for item in company %}
@@ -30,13 +30,13 @@
           class="card-link text-decoration-none"
           href="{% url 'myapp:update-company' item.name %}"
         >
-          <button class="btn border border-success pt-1 pb-1">Edit</button>
+          <button class="btn border btn-primary pt-1 pb-1">Edit</button>
         </a>
         <a
           class="card-link text-decoration-none"
           href="{% url 'myapp:delete-company' item.name %}"
         >
-          <button class="btn border border-danger pt-1 pb-1">Remove</button>
+          <button class="btn btn-danger pt-1 pb-1">Remove</button>
         </a>
       </div>
      

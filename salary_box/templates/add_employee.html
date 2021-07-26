@@ -3,12 +3,20 @@
 {% block title %} Add Employee {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <form  method="post">
-          {% csrf_token %}
-          {{ form.as_p }}
-              <button type="submit" class="btn btn-primary">Add Employee</button>
+<div class="d-flex justify-content-center flex-direction-row">
+    <div class="border border-info p-4">
+        <h4 class="text-center text-info" >Add Employee</h4>
+        <form method="post">
+            {% csrf_token %} 
+            {{ form.as_p }}
+            <div class="d-flex justify-content-end justify-content-between">
+                <a class="text-decoration-none " href="{{ request.META.HTTP_REFERER }}">
+                    <button type="button" class="btn btn-danger ">Close</button>
+                </a>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
         </form>
     </div>
+</div>
 
 {% endblock %}

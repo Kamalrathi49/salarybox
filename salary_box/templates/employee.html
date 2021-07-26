@@ -2,7 +2,7 @@
 {{request.path|remove_slash}} {% endblock %} {% block content %}
 <a href="{% url 'myapp:add-employee' request.path|remove_slash %}">
   <button class="btn btn-primary btn-outline-info text-light mb-3">
-    Add New Employee
+    Add Employee
   </button>
 </a>
 {% if employee %}

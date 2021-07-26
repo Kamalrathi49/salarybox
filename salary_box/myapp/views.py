@@ -1,3 +1,4 @@
+from django.contrib.messages.api import error
 from django.shortcuts import redirect, render
 from .models import * 
 from .forms import *
@@ -24,8 +25,8 @@ def add_company(request):
           messages.success(request, f"Your Company is added sucessfully!")
           return redirect('myapp:home')
         else :
-             messages.error(request, f"Something went wrong!, Please try again later.")
-             return redirect('myapp:home')
+             messages.error(request, f'Company name already exist!, Please try something else')
+             return redirect('myapp:add-company')
     else:
         form = addCompanyForm()
         ctx = {'form': form}
