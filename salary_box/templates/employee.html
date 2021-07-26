@@ -1,50 +1,42 @@
-{% extends 'base.html' %}
-{% load custom_tags %}
-{% block title %} {{request.path|remove_slash}} {% endblock %}
-{% block content %}
+{% extends 'base.html' %} {% load custom_tags %} {% block title %}
+{{request.path|remove_slash}} {% endblock %} {% block content %}
 <a href="{% url 'myapp:add-employee' request.path|remove_slash %}">
   <button class="btn btn-primary btn-outline-info text-light mb-3">
-    Add Employee
+    Add New Employee
   </button>
 </a>
 {% if employee %}
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First Name</th>
-      <th scope="col">Last Name</th>
-      <th scope="col">Addresss</th>
-      <th scope="col">Experience</th>
-      <th scope="col">Edit</th>
-      <th scope="col">Delete</th>
-    </tr>
-  </thead>
-  {% for item in employee %}
-  <tbody>
-    <tr>
-      <th scope="row">{{forloop.counter}}</th>
-      <td>{{item.first_name}}</td>
-      <td>{{item.last_name}}</td>
-      <td>{{item.address}}</td>
-      <td>{{item.experience}}</td>
-      <td>
-        <a href="{% url 'myapp:update-employee' item.company item.id %}">
-          <img src="https://img.icons8.com/ios/20/000000/pencil--v1.png" />
-        </a>
-      </td>
-      <td>
-        <a href="{% url 'myapp:delete-employee' item.id %}">
-          <img
-          src="https://img.icons8.com/material-outlined/20/000000/delete-sign.png"/>
-        </a>
-      </td>
-    </tr>
-  </tbody>
-  {% endfor %}
-</table>
+<div class="center row">
+ {% for item in employee %}
+<div class="card border border-2 border-info mb-4 m-2 profile-card ">
+  <div class="card-block m-3 ">
+    <h4 class="card-title text-info">
+      <img
+        src="https://img.icons8.com/fluent/48/000000/identification-documents.png"
+      /> {{item.first_name}} {{item.last_name}}
+    </h4>
+    <p class="card-text info">Id: {{item.id}}</p>
+    <p class="card-text info">Address: {{item.address}}</p>
+    <p class="card-text info">Experience: {{item.experience}}</p>
+
+    <div class="text-end actions">
+      <a
+        class="card-link text-decoration-none"
+        href="{% url 'myapp:update-employee' item.company item.id %}"
+      >
+        <button class="btn border border-success pt-1 pb-1">Edit</button>
+      </a>
+      <a
+        class="card-link text-decoration-none"
+        href="{% url 'myapp:delete-employee' item.id %}"
+      >
+        <button class="btn border border-danger pt-1 pb-1">Remove</button>
+      </a>
+    </div>
+  </div>
+</div>
+{% endfor %} 
+</div>
 {% else %}
 <h3 class="text-dark text-center mt-5">No Employee Available</h3>
-{% endif %} 
-
-{% endblock %}
+{% endif %} {% endblock %}

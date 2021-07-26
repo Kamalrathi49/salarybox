@@ -13,8 +13,12 @@ class Company(models.Model):
     fund_raise = models.CharField(max_length=50)
     working = models.CharField(max_length=7, choices=STATEMENT_CHOICE, default='working')
 
+
     def __str__(self):
         return self.name
+
+    def get_employee_count(self):
+        return Employee.objects.filter(company = self).count()
 
 
 class Employee(models.Model):

@@ -1,59 +1,50 @@
-{% extends 'base.html' %} {% block title %} Home {% endblock %} 
-{% block content %}
+{% extends 'base.html' %} 
+{% block title %} Home {% endblock %} 
+{% block content%}
 
 <a href="{% url 'myapp:add-company'  %}">
   <button class="btn btn-primary text-light btn-outline-info mb-3">
-    Add Company
+    Add New Company
   </button>
 </a>
-{% if company %}
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Company</th>
-      <th scope="col">Founder</th>
-      <th scope="col">Head Quator</th>
-      <th scope="col">Fund Raise</th>
-      <th scope="col">Edit</th>
-      <th scope="col">Delete</th>
-    </tr>
-  </thead>
-  {% for item in company %}
-  <tbody>
-    <tr>
-      <th scope="row">{{forloop.counter}}</th>
-      <td>
-        <a
-          class="text-decoration-none"
-          href="{% url 'myapp:employee' item.name %}"
-        >
-          {{item.name|upper}}
-        </a>
-      </td>
-      <td>{{item.founder|upper}}</td>
-      <td>{{item.headquator}}</td>
-      <td>{{item.fund_raise|upper}}</td>
-      <td>
-        <a href="{% url 'myapp:update-company' item.name %}">
-          <button style="border: none; background: none">
-            <img src="https://img.icons8.com/ios/20/000000/pencil--v1.png" />
-          </button>
-        </a>
-      </td>
-      <td>
-        <a href="{% url 'myapp:delete-company' item.name %}">
-          <img
-            src="https://img.icons8.com/material-outlined/20/000000/delete-sign.png"
-          />
-        </a>
-      </td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-{% else %}
-<h3 class="text-info text-center">No Companys Available</h2>
-{% endif %}
+{% if company %} {% for item in company %}
 
+<div class="card border border-2 border-info mb-4 container cards">
+  <a class="text-decoration-none" href="{% url 'myapp:employee' item.name %}">
+    <div class="card-block m-3">
+      <h4 class="card-title text-info">
+        <img
+          src="https://img.icons8.com/fluent/48/000000/skyscrapers.png"
+        />{{item.name}}
+      </h4>
+      <p class="card-text info">Founder: {{item.founder|upper}}</p>
+      <p class="card-text info">Ref No.: {{item.id}}</p>
+      <p class="card-text info">Headquator: {{item.headquator}}</p>
+      <p class="card-text info">Fund Raise: {{item.fund_raise}}</p>
+      <p class="card-text info">Status: {{item.working}}</p>
+      <p class="card-text info">
+        Total Employees: {{item.get_employee_count}}
+      </p>
+      <div class="text-end actions">
+        <a
+          class="card-link text-decoration-none"
+          href="{% url 'myapp:update-company' item.name %}"
+        >
+          <button class="btn border border-success pt-1 pb-1">Edit</button>
+        </a>
+        <a
+          class="card-link text-decoration-none"
+          href="{% url 'myapp:delete-company' item.name %}"
+        >
+          <button class="btn border border-danger pt-1 pb-1">Remove</button>
+        </a>
+      </div>
+     
+    </div>
+  </a>
+</div>
+{% endfor %} 
+{% else %}
+<h2 class="text-info text-center">No Companys Available</h2>
+{% endif %} 
 {% endblock %}
