@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
-{% block title %} {{request.path}} {% endblock %}
+{% load custom_tags %}
+{% block title %} {{request.path|remove_slash}} {% endblock %}
 
 {% block content %}
 <div class="d-flex justify-content-center flex-direction-row">
-    <div class="border border-info p-4">
+    <div class="border border-info p-4 shadow-lg p-3 mb-5 bg-light rounded">
         <h4 class="text-center text-info" >Update Company</h4>
         <form method="post">
             {% csrf_token %} 
             {{ form.as_p }}
-            <div class="d-flex justify-content-end justify-content-between">
+            <div class="d-flex justify-content-end justify-content-between mt-4">
                 <a class="text-decoration-none " href="{% url 'myapp:home' %}">
                     <button type="button" class="btn btn-danger ">Close</button>
                 </a>

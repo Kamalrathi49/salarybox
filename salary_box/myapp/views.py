@@ -81,7 +81,7 @@ def update_employee(request, company_name, id):
         form = addEmployeeForm(request.POST or None, instance = employee)
         if form.is_valid():
             form.save()
-            messages.success(request, f"Your Employee '{employee.first_name}' is updated sucessfully!")
+            messages.success(request, f"Your Employee '{employee.first_name} {employee.last_name}' is updated sucessfully!")
             return redirect(f'/{company_name}')
         else: 
             messages.error(request, f'Something went wrong!, Please try again')
