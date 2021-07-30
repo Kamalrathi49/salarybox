@@ -6,7 +6,7 @@ from .models import *
 class addCompanyForm(forms.ModelForm):
     class Meta:
         model = Company
-        fields = '__all__'
+        fields = ('name', 'founder', 'headquator', 'fund_raise', 'working')
 
         widgets = {
             'name': TextInput(attrs={

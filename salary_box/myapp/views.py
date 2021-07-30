@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from .models import * 
 from .forms import *
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages #import messages
 
 # Create your views here.
@@ -16,11 +17,14 @@ def employee(request, company_name):
     ctx = {'employee': employee}
     return render(request, 'employee.html', ctx)
 
+@login_required
 def add_company(request):
     if request.method == "POST":
         form = addCompanyForm(request.POST)
         if form.is_valid():
-          form.save()
+          company = form.save(commit=False)
+          company.user = Company.objects.get(user = request.user)
+          company.save()
           messages.success(request, f"Your Company is added sucessfully!")
           return redirect('myapp:home')
         else :

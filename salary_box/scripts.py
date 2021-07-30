@@ -1,41 +1,38 @@
 from myapp.models import Company
 
 company_list = [{
-  "name": "Edgeblab",
-  "founder": "Blakeley Mildmott",
-  "headquator": "Mazār-e Sharīf",
+  "name": "Google",
+  "founder": "Larry Page",
+  "headquator": "Hong Kong",
   "working": "working",
-  "fund_raise": "$680550.66",
-}, {
-  "name": "Browseblab",
-  "founder": "Vittoria Lunn",
-  "headquator": "Mafang",
-  "working": "close",
-  "fund_raise": "$558921.37",
-}, {
-  "name": "Yakijo",
-  "founder": "Alex Pothbury",
-  "headquator": "Reno",
+  "fund_raise": "$6805504336",
+},
+{
+  "name": "Apple",
+  "founder": "Steve Jobs",
+  "headquator": "California",
   "working": "working",
-  "fund_raise": "$263526.55",
-}, {
-  "name": "Yodoo",
-  "founder": "Christiano Bosket",
-  "headquator": "Davyd-Haradok",
+  "fund_raise": "$6805533066",
+},
+{
+  "name": "Tesla",
+  "founder": "Nicolas Tesla",
+  "headquator": "New York",
   "working": "working",
-  "fund_raise": "$982123.78",
-}, {
-  "name": "Topdrive",
-  "founder": "Grace Maidens",
-  "headquator": "Xiaoguai",
-  "working": "close",
-  "fund_raise": "$596797.01",
-}]
+  "fund_raise": "$6805340",
+},
+{
+  "name": "Nokia",
+  "founder": "Fredrek Idestam",
+  "headquator": "London",
+  "working": "working",
+  "fund_raise": "$680325340",
+},]
 
 for item in company_list:
     company = Company.objects.create(
         name=item['name'],
-        founder=item['description'],
+        founder=item['founder'],
         headquator=item['headquator'],
         fund_raise=item['fund_raise'],
         working=item['working'],

@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 STATEMENT_CHOICE = (
     ('working', 'WORKING'),
@@ -12,7 +12,7 @@ class Company(models.Model):
     headquator = models.CharField(max_length=99)
     fund_raise = models.CharField(max_length=50)
     working = models.CharField(max_length=7, choices=STATEMENT_CHOICE, default='working')
-
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='company_user')
 
     def __str__(self):
         return self.name
@@ -28,6 +28,6 @@ class Employee(models.Model):
     address = models.CharField(max_length=99)
     experience = models.IntegerField()
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='company_employee')
-
+     
     def __str__(self):
         return self.first_name + self.last_name
