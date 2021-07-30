@@ -12,7 +12,7 @@ class Company(models.Model):
     headquator = models.CharField(max_length=99)
     fund_raise = models.CharField(max_length=50)
     working = models.CharField(max_length=7, choices=STATEMENT_CHOICE, default='working')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='company_user')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user')
 
     def __str__(self):
         return self.name

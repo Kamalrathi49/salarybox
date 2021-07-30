@@ -20,6 +20,7 @@
     <p class="card-text info">Experience: {{item.experience}}</p>
 
     <div class="text-end actions">
+      {% if item.company.user == request.user %}
       <a
         class="card-link text-decoration-none"
         href="{% url 'myapp:update-employee' item.company item.id %}"
@@ -32,6 +33,7 @@
       >
         <button class="btn btn-danger pt-1 pb-1">Remove</button>
       </a>
+      {% endif %}
     </div>
   </div>
 </div>

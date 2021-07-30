@@ -15,15 +15,16 @@
           </svg>{{ request.user|upper}}
         </button>
         <ul class="dropdown-menu btn-sm text-center mr-2" aria-labelledby="dropdownMenuClickableOutside">
-          <li><a class="dropdown-item text-light" href="{% url 'accountapp:logout' %}">Log Out</a></li>
+          <li><a class="dropdown-item text-dark" href="{% url 'accountapp:logout' %}">Log Out</a></li>
         </ul>
       </div>
         {% else %}
-        <a href="{% url 'accountapp:login' %}">
-          <btn class="btn bg-secondary btn-sm pl-3 pr-3 text-decoration-none text-light">Log In</btn>
+        
+        <a class="mx-1" href="{% url 'accountapp:login' %}">
+          <btn class="btn bg-secondary btn-sm px-3  text-decoration-none text-light">Log In</btn>
         </a>
-        <a href="{% url 'accountapp:signup' %}">
-          <btn class="btn bg-primary btn-sm pl-3 pr-3 text-decoration-none text-light">Sign Up</btn>
+        <a class="mx-1" href="{% url 'accountapp:signup' %}">
+          <btn class="btn bg-primary btn-sm px-3 text-decoration-none text-light">Sign Up</btn>
         </a>
       {% endif%}
       <a class="nav-link active text-dark" aria-current="page" href="admin/">Admin panel</a>

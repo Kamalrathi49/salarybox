@@ -26,6 +26,7 @@
         Total Employees: {{item.get_employee_count}}
       </p>
       <div class="text-end actions">
+        {% if item.user == request.user %}
         <a
           class="card-link text-decoration-none"
           href="{% url 'myapp:update-company' item.name %}"
@@ -38,6 +39,9 @@
         >
           <button class="btn btn-danger pt-1 pb-1">Remove</button>
         </a>
+        {% else %}
+        <p class="text-dark">Created By: <strong>{{item.user}}</strong></p>
+        {% endif %}
       </div>
      
     </div>

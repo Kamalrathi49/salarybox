@@ -1,10 +1,20 @@
 {% extends 'account/form_base.html'%}
-    {% block title %} log in {% endblock %}
+    {% block title %} Sign Up {% endblock %}
 
 {% block content %}
-    <form method="POST">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button class="btn btn-info" type="submit">SignUp</button>
-    </form>
+<div class="d-flex justify-content-center flex-direction-row">
+    <div class="border border-info p-4 shadow-lg p-3 mb-5 bg-light rounded">
+        <h4 class="text-center text-info" >Sign Up</h4>
+        <form method="post">
+            {% csrf_token %} 
+            {{ form.as_p }}
+            <div class="d-flex justify-content-end justify-content-between mt-4">
+                <a class="text-decoration-none " href="{{ request.META.HTTP_REFERER }}">
+                    <button type="button" class="btn btn-danger ">Cancel</button>
+                </a>
+                <button type="submit" class="btn btn-primary">Create Account</button>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}

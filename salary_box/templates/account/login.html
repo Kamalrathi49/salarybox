@@ -2,9 +2,19 @@
     {% block title %} log in {% endblock %}
 
 {% block content %}
-    <form method="POST">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button class="btn btn-info" type="submit">login</button>
-    </form>
+<div class="d-flex justify-content-center flex-direction-row mt-4">
+    <div class="border border-info p-4 ">
+        <h4 class="text-center text-info m-4" >Log In</h4>
+        <form class="m-4 p-4" method="post">
+            {% csrf_token %} 
+            {{ form.as_p }}
+            <div class="d-flex justify-content-end justify-content-between mt-4" style="margin-top: 100px;">
+                <a class="text-decoration-none " href="{{ request.META.HTTP_REFERER }}">
+                    <button type="button" class="btn btn-danger ">Cancel</button>
+                </a>
+                <button type="submit" class="btn btn-primary">login</button>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}
