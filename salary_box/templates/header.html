@@ -6,7 +6,26 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{% url 'myapp:home' %}">Home</a>
         </li> 
-      </ul>
+      </ul>     
+      {% if  user.is_authenticated %}
+      <div class="btn-group">
+        <button class="btn btn-info btn-sm dropdown-toggle" type="button" id="dropdownMenuClickableOutside" data-bs-toggle="dropdown" data-bs-auto-close="inside" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18" fill="currentColor" class="bi bi-person-fill " viewBox="0 0 16 10" style="padding-top: 0%;">
+            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+          </svg>{{ request.user|upper}}
+        </button>
+        <ul class="dropdown-menu btn-sm text-center" aria-labelledby="dropdownMenuClickableOutside">
+          <li><a class="dropdown-item" href="#">Menu item</a></li>
+          <li><a class="dropdown-item" href="#">Menu item</a></li>
+          <li><a class="dropdown-item bg-secondary text-light" href="{% url 'accountapp:logout' %}">Log Out</a></li>
+        </ul>
+      </div>
+        {% else%}
+          <btn class="btn bg-secondary btn-sm pl-3 pr-3 text-decoration-none text-light">Log In</btn>
+        <a href="{% url 'accountapp:signup' %}">
+          <btn class="btn bg-primary btn-sm pl-3 pr-3 text-decoration-none text-light">Sign Up</btn>
+        </a>
+      {% endif%}
       <a class="nav-link active text-dark" aria-current="page" href="admin/">Admin panel</a>
     </div>
 
