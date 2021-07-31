@@ -1,20 +1,23 @@
 from django.shortcuts import redirect, render
 from .models import * 
 from .forms import *
+from accountapp.forms import *
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages #import messages
 
 # Create your views here.
 
+login_form = loginForm()
+signup_form = signupform()
 def company(request):
     company = Company.objects.all()
-    ctx = {'company': company}
+    ctx = {'company': company, 'login_form': login_form, 'signup_form':signup_form}
     return render(request, 'home.html', ctx)
 
 
 def employee(request, company_name):
     employee = Employee.objects.filter(company__name=company_name)
-    ctx = {'employee': employee}
+    ctx = {'employee': employee, 'login_form': login_form, 'signup_form':signup_form}
     return render(request, 'employee.html', ctx)
 
 @login_required

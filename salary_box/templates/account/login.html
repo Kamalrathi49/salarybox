@@ -1,20 +1,22 @@
-{% extends 'account/form_base.html' %}
-    {% block title %} log in {% endblock %}
+<!-- Button trigger modal -->
 
-{% block content %}
-<div class="d-flex justify-content-center flex-direction-row mt-4">
-    <div class="border border-info p-4 ">
-        <h4 class="text-center text-info m-4" >Log In</h4>
-        <form class="m-4 p-4" method="post">
-            {% csrf_token %} 
-            {{ form.as_p }}
-            <div class="d-flex justify-content-end justify-content-between mt-4" style="margin-top: 100px;">
-                <a class="text-decoration-none " href="{{ request.META.HTTP_REFERER }}">
-                    <button type="button" class="btn btn-danger ">Cancel</button>
-                </a>
-                <button type="submit" class="btn btn-primary">login</button>
+
+<!-- Modal -->
+<div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Log In</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-        </form>
+            <div class="modal-body">
+                <form  action="{% url 'accountapp:login' %}" method="post">
+                    {% csrf_token %}
+                    {{ login_form.as_p }}
+                    <hr class="pt-1">
+                    <button type="submit" class="btn btn-primary">login</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
-{% endblock %}

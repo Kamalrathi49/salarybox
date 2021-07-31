@@ -39,7 +39,7 @@ def log_in(request):
                 return redirect('/') 
          else:
              messages.error(request, f'Something went worng!, Please try again')
-             return redirect('/auth/login')
+             return redirect('/')
         else:
             messages.error(request, f'Something went worng!, Please try again')
             return redirect('/auth/login')
