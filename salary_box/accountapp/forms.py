@@ -11,36 +11,38 @@ class signupform(UserCreationForm):
         model = User
         fields = ('username', 'email', 'password1', 'password2')
 
-        def __init__(self, *args, **kwargs):
+        widgets = {
+                'username': TextInput(attrs={
+                    'class': "form-control",
+                    'style': 'width: 300px;',
+                    'placeholder': 'Username'
+                    }),
+                'email': EmailInput(attrs={
+                    'class': "form-control", 
+                    'style': 'width: 300px;',
+                    'placeholder': 'Email'
+                    }),
+                'password1': PasswordInput(attrs={
+                    'class': "form-control",
+                    'style': "width: 300px",
+                    'placeholder': 'Password'
+                }),
+                'password2': PasswordInput(attrs={
+                    'class': "form-control",
+                    'style': "width: 300px",
+                    'placeholder': 'Confirm Password'
+                }),
+                }
+
+
+    def __init__(self, *args, **kwargs):
             super(signupform, self).__init__(*args, **kwargs) # Call to ModelForm constructor
             for fieldname in ['username', 'email', 'password1', 'password2']:
              self.fields[fieldname].help_text = None
 
-        widgets = {
-            'username': TextInput(attrs={
-                'class': "form-control",
-                'style': 'width: 300px;',
-                'placeholder': 'Username'
-                }),
-            'email': EmailInput(attrs={
-                'class': "form-control", 
-                'style': 'width: 300px;',
-                'placeholder': 'Email'
-                }),
-            'password1': PasswordInput(attrs={
-                'class': "form-control", 
-                'style': 'width: 300px;',
-                'placeholder': 'Password'
-                }),
-            'password2': PasswordInput(attrs={
-                'class': "form-control", 
-                'style': 'width: 300px;',
-                'placeholder': 'Confirm Password'
-                }),
-        }
 
 
-
+   
 class loginForm(forms.Form):
     username = forms.CharField(max_length=99)
     password = forms.CharField(widget=forms.PasswordInput())

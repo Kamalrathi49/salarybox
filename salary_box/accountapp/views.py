@@ -2,6 +2,8 @@ from django.shortcuts import redirect, render
 from accountapp.forms import *
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth import logout
+from django.contrib import messages #import messages
+
 
 # Create your views here.
 
@@ -12,7 +14,11 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             auth_login(request, user)
+            messages.success(request, f'Account created successfully!')
             return redirect('/')
+        else:
+            messages.error(request, f'Something went worng!, Please try again')
+            return redirect('/auth/signup')
 
     else:    
         form = signupform()
@@ -27,15 +33,17 @@ def log_in(request):
          username = form.cleaned_data['username']
          password = form.cleaned_data['password']
          user = authenticate(request, username = username, password=password)
-         print('------------------------->>>>>>>', user)
          if user:
-             auth_login(request, user)
-             return redirect('/') 
+                auth_login(request, user)
+                messages.success(request, f'Login successfully!')
+                return redirect('/') 
          else:
+             messages.error(request, f'Something went worng!, Please try again')
              return redirect('/auth/login')
         else:
-            return redirect('/login')
-    
+            messages.error(request, f'Something went worng!, Please try again')
+            return redirect('/auth/login')
+
     else:
         form = loginForm()
         ctx = {'form':form}
@@ -45,4 +53,5 @@ def log_in(request):
 
 def log_out(request):
     logout(request)
+    messages.success(request, f'Logout successfully!')
     return redirect('/')
