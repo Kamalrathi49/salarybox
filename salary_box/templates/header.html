@@ -1,39 +1,39 @@
 <nav class="navbar navbar-expand-lg navbar-light text-dark fw-light mb-4 p-1 border border-dark shadow">
   <div class="container">
-    <a class="navbar-brand text-info p-1 " href="{% url 'myapp:home' %}">Salary Box</a>
+    <a class="navbar-brand text-info p-1" href="{% url 'myapp:home' %}">Salary Box</a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{% url 'myapp:home' %}">Home</a>
-        </li> 
-      </ul>     
-      {% if  user.is_authenticated %}
+        </li>
+      </ul>
+      {% if user.is_authenticated %}
       <div class="btn-group">
-        <button class="btn btn-dark text-light p-1 dropdown-toggle" type="button" id="dropdownMenuClickableOutside" data-bs-toggle="dropdown" data-bs-auto-close="inside" aria-expanded="false">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18" fill="currentColor" class="bi bi-person-fill mx-1 mb-2 " viewBox="0 0 16 10" >
-            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+        <button class="btn btn-dark text-light p-1 dropdown-toggle" type="button" id="dropdownMenuClickableOutside"
+          data-bs-toggle="dropdown" data-bs-auto-close="inside" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18" fill="currentColor"
+            class="bi bi-person-fill mx-1 mb-2 " viewBox="0 0 16 10">
+            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
           </svg>{{ request.user}}
         </button>
         <ul class="dropdown-menu btn-sm text-center mr-2" aria-labelledby="dropdownMenuClickableOutside">
           <li><a class="dropdown-item text-dark" href="{% url 'accountapp:logout' %}">Log Out</a></li>
         </ul>
       </div>
-        {% else %}
-          <btn class="btn bg-secondary btn-sm px-3 mx-2 text-decoration-none text-light" data-bs-toggle="modal" data-bs-target="#login">Log In</btn>
-          <btn class="btn bg-primary btn-sm px-3 text-decoration-none text-light" data-bs-toggle="modal" data-bs-target="#signup">Sign Up</btn>
+      {% else %}
+      <btn class="btn bg-secondary btn-sm px-3 mx-2 text-decoration-none text-light" data-bs-toggle="modal"
+        data-bs-target="#login">Log In</btn>
+      <btn class="btn bg-primary btn-sm px-3 text-decoration-none text-light" data-bs-toggle="modal"
+        data-bs-target="#signup">Sign Up</btn>
       {% endif%}
+      {% if user.is_superuser %}
       <a class="nav-link active text-dark" aria-current="page" href="admin/">Admin panel</a>
+      {% else %}
+      {% endif %}
     </div>
 
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
   </div>

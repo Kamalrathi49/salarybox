@@ -15,11 +15,10 @@ def signup(request):
             user = form.save()
             auth_login(request, user)
             messages.success(request, f'Account created successfully!')
-            return redirect('/')
+            return redirect(request.META.get('HTTP_REFERER'))
         else:
             messages.error(request, f'Something went worng!, Please try again')
-            return redirect('/auth/signup')
-
+            return redirect(request.META.get('HTTP_REFERER'))
     else:    
         form = signupform()
         ctx = {'form': form}
@@ -36,13 +35,13 @@ def log_in(request):
          if user:
                 auth_login(request, user)
                 messages.success(request, f'Login successfully!')
-                return redirect('/') 
+                return redirect(request.META.get('HTTP_REFERER')) 
          else:
              messages.error(request, f'Something went worng!, Please try again')
-             return redirect('/')
+             return redirect(request.META.get('HTTP_REFERER'))
         else:
             messages.error(request, f'Something went worng!, Please try again')
-            return redirect('/auth/login')
+            return redirect(request.META.get('HTTP_REFERER'))
 
     else:
         form = loginForm()
@@ -54,4 +53,4 @@ def log_in(request):
 def log_out(request):
     logout(request)
     messages.success(request, f'Logout successfully!')
-    return redirect('/')
+    return redirect(request.META.get('HTTP_REFERER'))
