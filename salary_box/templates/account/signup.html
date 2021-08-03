@@ -9,9 +9,11 @@
             <div class="modal-body">
                 <form action="{% url 'accountapp:signup' %}" method="post">
                     {% csrf_token %} {{ signup_form.as_p }}
-                    <hr class="p-1">
                     <button class="btn btn-primary" type="submit">Create Account</button>
                 </form>
+                <hr>
+                <p class="text-center"> Already have account? <btn style="cursor: pointer;" type="button" class="text-primary text-decoration-none " data-bs-dismiss="modal" data-bs-toggle="modal"
+                    data-bs-target="#login" >Log In</btn></p>
             </div>
         </div>
     </div>

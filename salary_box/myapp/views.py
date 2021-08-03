@@ -27,7 +27,6 @@ def add_company(request):
         if form.is_valid():
           company = form.save(commit=False)
           company.user = request.user
-          print('-------------->>>>>>>>', company)
           company.save()
           messages.success(request, f"Your Company is added sucessfully!")
           return redirect('myapp:home')
