@@ -34,8 +34,8 @@
       <div class="text-end actions">
         {% if item.user == request.user %}
         <a
-          class="card-link text-decoration-none"
-          href="{% url 'myapp:update-company' item.name %}"
+        class="card-link text-decoration-none"
+        href="{% url 'myapp:update-company' item.name %}"
         >
           <button class="btn border btn-primary pt-1 pb-1">Edit</button>
         </a>
