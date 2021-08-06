@@ -27,7 +27,7 @@ class Employee(models.Model):
     last_name = models.CharField(max_length=20)
     address = models.CharField(max_length=99)
     experience = models.IntegerField()
-    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='company_employee')
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='employee')
      
     def __str__(self):
         return self.first_name + self.last_name

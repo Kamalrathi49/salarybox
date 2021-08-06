@@ -11,5 +11,5 @@ urlpatterns = [
     url(r'^(?P<company_name>[\w\-\ ]+)-/update-company/$', views.update_company, name='update-company'),
     url(r'^(?P<company_name>[\w\-\ ]+)-/(?P<id>\d+)-/update-employee/$', views.update_employee, name='update-employee'),
     url(r'^(?P<company_name>[\w\-\ ]+)/add-employee/$', views.add_employee, name='add-employee'),
-    url(r'^company-/(?P<company_name>[\w\-\ ]+)/$', views.employee, name='employee'),
+    url(r'^(?P<company_name>[\w\-\ ]+)/$', views.employee, name='employee'),
 ]

@@ -16,8 +16,8 @@ def company(request):
 
 
 def employee(request, company_name):
-    employee = Employee.objects.filter(company__name=company_name)
-    ctx = {'employee': employee, 'login_form': login_form, 'signup_form':signup_form}
+    employee = Employee.objects.filter(company__name=company_name) 
+    ctx = {'employee': employee,'login_form': login_form, 'signup_form':signup_form}
     return render(request, 'employee.html', ctx)
 
 @login_required
@@ -27,7 +27,6 @@ def add_company(request):
         if form.is_valid():
           company = form.save(commit=False)
           company.user = request.user
-          print('-------------->>>>>>>>', company)
           company.save()
           messages.success(request, f"Your Company is added sucessfully!")
           return redirect('myapp:home')

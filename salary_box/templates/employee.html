@@ -1,13 +1,11 @@
 {% extends 'base.html' %} {% load custom_tags %} {% block title %}
 {{request.path|remove_slash}} {% endblock %} {% block content %}
 
-{% if employee.0.company.user == request.user %}
 <a href="{% url 'myapp:add-employee' request.path|remove_slash %}">
   <button class="btn btn-primary btn-outline-info text-light mb-3">
     Add Employee
   </button>
 </a>
-{% endif %}
 
 {% if employee %}
 <div class="center row">
