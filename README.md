@@ -30,6 +30,9 @@
 - dbsqlite database
 - modal impliments
 
+## Screenshots
+- <img scr='https://github.com/Kamalrathi49/salarybox/blob/master/screenshots/Screenshot%20(10).png?raw=true' >
+
 ## How To Run 
 - clone the project from Github.
   -  Git clone https://github.com/Kamalrathi49/salarybox.git
