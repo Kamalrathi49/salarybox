@@ -14,7 +14,6 @@
     - static files
 - screen shot folder
 - requirements.txt
-- get_started.pdf
 
 ## What Technology use
 - Python
