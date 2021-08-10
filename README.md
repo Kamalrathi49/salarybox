@@ -5,7 +5,7 @@
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
-#### This is a Complete project in itself in which I used Django a python Framework with Bootsrap and jquary library..
+#### This is a complete project in itself in which I used Django a python Framework with Bootstrap and jquery library.
 ## What Inside folder
 - django complete setup include
     - django project
