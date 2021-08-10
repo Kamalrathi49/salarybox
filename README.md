@@ -31,7 +31,14 @@
 - modal impliments
 
 ## Screenshots
-- <img scr='https://github.com/Kamalrathi49/salarybox/blob/master/screenshots/Screenshot%20(10).png?raw=true' >
+- Home page ![screenshot 1](https://github.com/Kamalrathi49/salarybox/blob/master/screenshots/Screenshot%20(5).png?raw=true)
+ 
+- Employee Page ![screenshot 1](https://github.com/Kamalrathi49/salarybox/blob/master/screenshots/Screenshot%20(6).png?raw=true)
+
+- Log In ![screenshot 1](https://github.com/Kamalrathi49/salarybox/blob/master/screenshots/Screenshot%20(7).png?raw=true)
+
+- Sign Up ![screenshot 1](https://github.com/Kamalrathi49/salarybox/blob/master/screenshots/Screenshot%20(8).png?raw=true)
+
 
 ## How To Run 
 - clone the project from Github.
